@@ -32,7 +32,7 @@ except Exception, detail:
 
 from slideshow import Slideshow
 
-gettext.install("snowlinux-installer", "/usr/share/linuxmint/locale")
+gettext.install("snowlinux-installer", "/usr/share/snowlinux/locale")
 gtk.gdk.threads_init()
 
 INDEX_PARTITION_PATH=0
@@ -247,29 +247,6 @@ class InstallerWindow:
         column.add_attribute(ren, "text", 0)
         self.wTree.get_widget("treeview_language_list").append_column(column)
         self.wTree.get_widget("treeview_language_list").connect("cursor-changed", self.assign_language)
-
-        # build user info page
-        self.wTree.get_widget("face_select_picture_button").connect( "button-release-event", self.face_select_picture_button_clicked)        
-        self.wTree.get_widget("face_take_picture_button").connect( "button-release-event", self.face_take_picture_button_clicked)           
-        os.system("convert /usr/share/pixmaps/faces/user-generic.png -resize x96 /tmp/snowlinux-installer-face.png")
-        self.wTree.get_widget("face_image").set_from_file("/tmp/snowlinux-installer-face.png")   
-        
-        webcam_detected = False
-        try:
-            import cv
-            capture = cv.CaptureFromCAM(-1) 
-            for i in range(10):
-                img = cv.QueryFrame(capture)        
-                if img != None:                    
-                    webcam_detected = True   
-        except Exception, detail:
-            print detail
-
-        if webcam_detected:
-            self.wTree.get_widget("face_take_picture_button").set_tooltip_text(_("Click this button to take a new picture of yourself with the webcam"))
-        else:
-            self.wTree.get_widget("face_take_picture_button").set_sensitive(False)
-            self.wTree.get_widget("face_take_picture_button").set_tooltip_text(_("The installer did not detect any webcam"))
         
         # build the language list
         self.build_lang_list()        
@@ -441,69 +418,6 @@ class InstallerWindow:
 
         # fix text wrap
         self.fix_text_wrap()
-        
-    def face_select_picture_button_clicked(self, widget, event):
-        image = gtk.Image()
-        preview = gtk.ScrolledWindow()
-        preview.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        preview.set_size_request(150, 150)
-        preview.add_with_viewport(image)
-        image.show()
-        preview.show()
-        chooser = gtk.FileChooserDialog(title=None, parent=self.window,
-                                        action=gtk.FILE_CHOOSER_ACTION_OPEN,
-                                        buttons=(gtk.STOCK_CANCEL,
-                                                 gtk.RESPONSE_CANCEL,
-                                                 gtk.STOCK_OPEN,
-                                                 gtk.RESPONSE_OK),
-                                        backend=None)
-        chooser.set_default_response(gtk.RESPONSE_OK)
-        chooser.set_current_folder("/usr/share/pixmaps/faces")
-        if os.path.exists("/home/mint"):
-            chooser.add_shortcut_folder("/home/mint")
-        filter = gtk.FileFilter()
-        filter.set_name(_('Images'))
-        filter.add_mime_type('image/png')
-        filter.add_mime_type('image/jpeg')
-        filter.add_mime_type('image/gif')
-        filter.add_mime_type('bitmap/bmp')        
-        chooser.add_filter(filter)        
-        chooser.set_preview_widget(preview)
-        chooser.connect("update-preview", self.update_preview_cb, preview)
-        response = chooser.run()
-        if response == gtk.RESPONSE_OK:
-            filename = chooser.get_filename()
-            os.system("convert %s -resize x96 /tmp/snowlinux-installer-face.png" % filename)
-            self.wTree.get_widget("face_image").set_from_file("/tmp/snowlinux-installer-face.png")
-        chooser.destroy()
-    
-    def update_preview_cb(self, file_chooser, preview):
-        filename = file_chooser.get_preview_filename()
-        try:
-            if filename:
-                pixbuf = gtk.gdk.pixbuf_new_from_file(filename)
-                preview.child.child.set_from_pixbuf(pixbuf)
-                have_preview = True
-            else:
-                have_preview = False
-        except Exception, e:
-            #print e
-            have_preview = False
-        file_chooser.set_preview_widget_active(have_preview)
-        return	
-            
-    def face_take_picture_button_clicked(self, widget, event):
-        try:
-            import cv
-            capture = cv.CaptureFromCAM(-1) 
-            for i in range(10):
-                img = cv.QueryFrame(capture)        
-                if img != None:
-                    cv.SaveImage("/tmp/snowlinux-installer-webcam.png", img)
-                    os.system("convert /tmp/snowlinux-installer-webcam.png -resize x96 /tmp/snowlinux-installer-face.png")
-                    self.wTree.get_widget("face_image").set_from_file("/tmp/snowlinux-installer-face.png")
-        except Exception, detail:
-            print detail
 
     def fix_text_wrap(self):
         while gtk.events_pending():
@@ -538,14 +452,7 @@ class InstallerWindow:
         self.wTree.get_widget("label_pass_help").set_markup("<span fgcolor='#3C3C3C'><sub><i>%s</i></sub></span>" % _("Please enter your password twice to ensure it is correct"))
         self.wTree.get_widget("label_hostname").set_markup("<b>%s</b>" % _("Hostname"))
         self.wTree.get_widget("label_hostname_help").set_markup("<span fgcolor='#3C3C3C'><sub><i>%s</i></sub></span>" % _("This hostname will be the computers name on the network"))
-                
-        self.wTree.get_widget("face_label").set_markup("<b>%s</b>" % _("Your picture"))
-        self.wTree.get_widget("face_description").set_markup("<span fgcolor='#3C3C3C'><sub><i>%s</i></sub></span>" % _("This picture represents your user account. It is used in the login screen and a few other places."))
-        self.wTree.get_widget("face_take_picture_button").set_label(_("Take a photo"))        
-        
-        self.wTree.get_widget("face_select_picture_button").set_label(_("Select a picture"))
-        self.wTree.get_widget("face_select_picture_button").set_tooltip_text(_("Click this button to choose a picture for your account"))
-                
+            
         # timezones
         self.wTree.get_widget("label_timezones").set_label(_("Selected timezone:"))
         
@@ -693,7 +600,7 @@ class InstallerWindow:
         #Try to find out where we're located...
         cur_country_code = None
         try:
-            whatismyip = 'http://debian.linuxmint.com/installer/show_my_ip.php'
+            whatismyip = 'http://debian.snowlinux.com/installer/show_my_ip.php'
             ip = urllib.urlopen(whatismyip).readlines()[0]
             gi = GeoIP.new(GeoIP.GEOIP_MEMORY_CACHE)
             cur_country_code = gi.country_code_by_addr(ip)
@@ -1395,11 +1302,11 @@ class InstallerWindow:
         self.setup.language = row[1]
         self.setup.print_setup()
         try:            
-            self.translation = gettext.translation('snowlinux-installer', "/usr/share/linuxmint/locale", languages=[self.setup.language])
+            self.translation = gettext.translation('snowlinux-installer', "/usr/share/snowlinux/locale", languages=[self.setup.language])
             self.translation.install()
         except Exception, detail:
             print "No translation found, switching back to English"
-            self.translation = gettext.translation('snowlinux-installer', "/usr/share/linuxmint/locale", languages=['en'])
+            self.translation = gettext.translation('snowlinux-installer', "/usr/share/snowlinux/locale", languages=['en'])
             self.translation.install()        
         try:
             self.i18n()

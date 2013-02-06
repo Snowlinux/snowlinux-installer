@@ -5,7 +5,7 @@ export DISPLAY
 # detect language (as per the livecd)
 LANG=`cat /etc/default/locale | grep -v '#' | head -n 1 | cut -d '=' -f 2 | sed 's/"//g'`
 export LANG
-# Launches a "display manager" for the live-installer
-/usr/bin/python2.7 /usr/lib/live-installer/standalone-dm.py
+# Launches a "display manager" for the snowlinux-installer
+/usr/bin/python2.7 /usr/lib/snowlinux-installer/standalone-dm.py
 
 

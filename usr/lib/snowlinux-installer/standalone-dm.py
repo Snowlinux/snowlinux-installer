@@ -25,7 +25,7 @@ class StandaloneDM:
 		wpid = self.pid_open(wCMD)
 		spid = self.pid_open(sCMD, wait=True)
 		
-		ppid = self.pid_open("/usr/lib/live-installer/main.py", wait=True)
+		ppid = self.pid_open("/usr/lib/snowlinux-installer/main.py", wait=True)
 		
 		#os.kill(wpid)
 		#os.kill(xpid)

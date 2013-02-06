@@ -9,13 +9,13 @@ import sys
 import parted
 from configobj import ConfigObj
 
-gettext.install("live-installer", "/usr/share/locale")
+gettext.install("snowlinux-installer", "/usr/share/locale")
 
 class InstallerEngine:
     ''' This is central to the live installer '''
 
     def __init__(self):
-        self.conf_file = '/etc/live-installer/install.conf'
+        self.conf_file = '/etc/snowlinux-installer/install.conf'
         configuration = ConfigObj(self.conf_file)
         self.distribution_name = configuration['distribution']['DISTRIBUTION_NAME']
         self.distribution_version = configuration['distribution']['DISTRIBUTION_VERSION']        
@@ -222,11 +222,11 @@ class InstallerEngine:
             print " --> Removing live packages"
             our_current += 1
             self.update_progress(total=our_total, current=our_current, message=_("Removing live configuration (packages)"))
-            self.do_run_in_chroot("apt-get remove --purge --yes --force-yes live-boot live-boot-initramfs-tools live-initramfs live-installer live-config live-config-sysvinit gparted")
+            self.do_run_in_chroot("apt-get remove --purge --yes --force-yes live-boot live-boot-initramfs-tools live-initramfs snowlinux-installer live-config live-config-sysvinit gparted")
             
             # When the purge is incomplete and leaves redundant symbolic links in the rc*.d directories.
             # The resulting startpar error prevents gsfxi to successfully install the Nvidia drivers.
-            self.do_run_in_chroot("update-rc.d -f live-installer remove")                    
+            self.do_run_in_chroot("update-rc.d -f snowlinux-installer remove")                    
                         
             # add new user
             print " --> Adding new user"
@@ -239,7 +239,7 @@ class InstallerEngine:
             self.do_run_in_chroot("echo root:%s | chpasswd" % setup.password1)
             
             # Add user's face
-            os.system("cp /tmp/live-installer-face.png /target/home/%s/.face" % setup.username)
+            os.system("cp /tmp/snowlinux-installer-face.png /target/home/%s/.face" % setup.username)
             self.do_run_in_chroot("chown %s:%s /home/%s/.face" % (setup.username, setup.username, setup.username))
             
             # Make the new user the default user in KDM            
@@ -527,7 +527,7 @@ class InstallerEngine:
         print " --> Running grub-mkconfig"
         self.do_run_in_chroot("grub-mkconfig -o /boot/grub/grub.cfg")
         grub_output = commands.getoutput("chroot /target/ /bin/sh -c \"grub-mkconfig -o /boot/grub/grub.cfg\"")
-        grubfh = open("/var/log/live-installer-grub-output.log", "w")
+        grubfh = open("/var/log/snowlinux-installer-grub-output.log", "w")
         grubfh.writelines(grub_output)
         grubfh.close()
         

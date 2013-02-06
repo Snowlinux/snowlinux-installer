@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import sys
-sys.path.append('/usr/lib/live-installer')
+sys.path.append('/usr/lib/snowlinux-installer')
 from installer import InstallerEngine, Setup, PartitionSetup
 
 try:
@@ -14,7 +14,7 @@ try:
     import subprocess
     import sys
     import math    
-    sys.path.append('/usr/lib/live-installer')
+    sys.path.append('/usr/lib/snowlinux-installer')
     from PIL import Image
     import pango
     import threading
@@ -32,7 +32,7 @@ except Exception, detail:
 
 from slideshow import Slideshow
 
-gettext.install("live-installer", "/usr/share/linuxmint/locale")
+gettext.install("snowlinux-installer", "/usr/share/linuxmint/locale")
 gtk.gdk.threads_init()
 
 INDEX_PARTITION_PATH=0
@@ -47,7 +47,7 @@ INDEX_PARTITION_OBJECT=7
 class ProgressDialog:
 	
 	def __init__(self):
-		self.glade = '/usr/share/live-installer/interface.glade'
+		self.glade = '/usr/share/snowlinux-installer/interface.glade'
 		self.dTree = gtk.glade.XML(self.glade, 'progress_window')
 		self.window = self.dTree.get_widget('progress_window')
 		self.progressbar = self.dTree.get_widget('progressbar_operation')
@@ -87,7 +87,7 @@ class MessageDialog(object):
         dialog = gtk.MessageDialog(self.parent, gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT, self.style, gtk.BUTTONS_OK, self.message)
         dialog.set_title(self.title)
         dialog.set_position(gtk.WIN_POS_CENTER)
-        dialog.set_icon_from_file("/usr/share/icons/live-installer.png")
+        dialog.set_icon_from_file("/usr/share/icons/snowlinux-installer.png")
         dialog.run()
         dialog.destroy()
         
@@ -102,7 +102,7 @@ class QuestionDialog(object):
         dialog = gtk.MessageDialog(self.parent, gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT, gtk.MESSAGE_QUESTION, gtk.BUTTONS_YES_NO, self.message)
         dialog.set_title(self.title)
         dialog.set_position(gtk.WIN_POS_CENTER)
-        dialog.set_icon_from_file("/usr/share/icons/live-installer.png")
+        dialog.set_icon_from_file("/usr/share/icons/snowlinux-installer.png")
         answer = dialog.run()
         if answer==gtk.RESPONSE_YES:
             return_value = True
@@ -195,7 +195,7 @@ class InstallerWindow:
         #Build the Setup object (where we put all our choices)
         self.setup = Setup()
         
-        self.resource_dir = '/usr/share/live-installer/'
+        self.resource_dir = '/usr/share/snowlinux-installer/'
         #self.glade = 'interface.glade'
         self.glade = os.path.join(self.resource_dir, 'interface.glade')
         self.wTree = gtk.glade.XML(self.glade, 'main_window')
@@ -251,8 +251,8 @@ class InstallerWindow:
         # build user info page
         self.wTree.get_widget("face_select_picture_button").connect( "button-release-event", self.face_select_picture_button_clicked)        
         self.wTree.get_widget("face_take_picture_button").connect( "button-release-event", self.face_take_picture_button_clicked)           
-        os.system("convert /usr/share/pixmaps/faces/user-generic.png -resize x96 /tmp/live-installer-face.png")
-        self.wTree.get_widget("face_image").set_from_file("/tmp/live-installer-face.png")   
+        os.system("convert /usr/share/pixmaps/faces/user-generic.png -resize x96 /tmp/snowlinux-installer-face.png")
+        self.wTree.get_widget("face_image").set_from_file("/tmp/snowlinux-installer-face.png")   
         
         webcam_detected = False
         try:
@@ -411,7 +411,7 @@ class InstallerWindow:
         #else:
         #     locale_code = self.setup.language
         
-        #slideshow_path = "/usr/share/live-installer-slideshow/slides/index.html"
+        #slideshow_path = "/usr/share/snowlinux-installer-slideshow/slides/index.html"
         #if os.path.exists(slideshow_path):            
         #    browser = webkit.WebView()
         #    s = browser.get_settings()
@@ -421,7 +421,7 @@ class InstallerWindow:
         #    self.wTree.get_widget("vbox_install").add(browser)
         #    self.wTree.get_widget("vbox_install").show_all()         
         # Initiate the slide show
-        self.slideshow_path = "/usr/share/live-installer/slideshow"
+        self.slideshow_path = "/usr/share/snowlinux-installer/slideshow"
         if os.path.exists(self.slideshow_path):
             self.slideshow_browser = webkit.WebView()
             s = self.slideshow_browser.get_settings()
@@ -473,8 +473,8 @@ class InstallerWindow:
         response = chooser.run()
         if response == gtk.RESPONSE_OK:
             filename = chooser.get_filename()
-            os.system("convert %s -resize x96 /tmp/live-installer-face.png" % filename)
-            self.wTree.get_widget("face_image").set_from_file("/tmp/live-installer-face.png")
+            os.system("convert %s -resize x96 /tmp/snowlinux-installer-face.png" % filename)
+            self.wTree.get_widget("face_image").set_from_file("/tmp/snowlinux-installer-face.png")
         chooser.destroy()
     
     def update_preview_cb(self, file_chooser, preview):
@@ -499,9 +499,9 @@ class InstallerWindow:
             for i in range(10):
                 img = cv.QueryFrame(capture)        
                 if img != None:
-                    cv.SaveImage("/tmp/live-installer-webcam.png", img)
-                    os.system("convert /tmp/live-installer-webcam.png -resize x96 /tmp/live-installer-face.png")
-                    self.wTree.get_widget("face_image").set_from_file("/tmp/live-installer-face.png")
+                    cv.SaveImage("/tmp/snowlinux-installer-webcam.png", img)
+                    os.system("convert /tmp/snowlinux-installer-webcam.png -resize x96 /tmp/snowlinux-installer-face.png")
+                    self.wTree.get_widget("face_image").set_from_file("/tmp/snowlinux-installer-face.png")
         except Exception, detail:
             print detail
 
@@ -896,11 +896,11 @@ class InstallerWindow:
                     # Uncomment the code below to check that each timezone has a corresponding color code (the code is here for debugging only)
                     #print "Timezone: %s, X: %s, Y: %s" % (tz.name, tz.x, tz.y)
                     #if (tz.x <= 800 and tz.y <= 409):
-                    #    im = Image.open('/usr/share/live-installer/timezone/cc.png')
+                    #    im = Image.open('/usr/share/snowlinux-installer/timezone/cc.png')
                     #    rgb_im = im.convert('RGB')                    
                     #    hexcolor = '%02x%02x%02x' % rgb_im.getpixel((tz.x, tz.y))
                     #    print " Color: #%s" % (hexcolor)
-                    #    image = "/usr/share/live-installer/timezone/timezone_%s.png" % self.timezone_colors[hexcolor]
+                    #    image = "/usr/share/snowlinux-installer/timezone/timezone_%s.png" % self.timezone_colors[hexcolor]
                     #    print "Image: %s" % image
             
         cell = gtk.CellRendererText()
@@ -910,7 +910,7 @@ class InstallerWindow:
         self.combo_timezones.set_model(model)
         self.timezone_map = self.wTree.get_widget("image_timezones")
         timezone_event = self.wTree.get_widget("event_timezones")
-        self.timezone_map.set_from_file("/usr/share/live-installer/timezone/bg.png")
+        self.timezone_map.set_from_file("/usr/share/snowlinux-installer/timezone/bg.png")
         timezone_event.connect("button-release-event", self.timezone_map_clicked)   
                      
     def timezone_combo_selected(self, combobox):
@@ -945,25 +945,25 @@ class InstallerWindow:
             iter = model.iter_next(iter)
         
     def timezone_select(self, timezone):        
-        im = Image.open('/usr/share/live-installer/timezone/cc.png')
+        im = Image.open('/usr/share/snowlinux-installer/timezone/cc.png')
         rgb_im = im.convert('RGB')
         hexcolor = '%02x%02x%02x' % rgb_im.getpixel((timezone.x, timezone.y))
         print "Color: #%s" % (hexcolor)
         
-        overlay_path = "/usr/share/live-installer/timezone/timezone_%s.png" % self.timezone_colors[hexcolor]
+        overlay_path = "/usr/share/snowlinux-installer/timezone/timezone_%s.png" % self.timezone_colors[hexcolor]
         print "Image: %s" % overlay_path
         
         # Superpose the picture of the timezone on the map
-        background = Image.open("/usr/share/live-installer/timezone/bg.png")
-        dot = Image.open("/usr/share/live-installer/timezone/dot.png")
+        background = Image.open("/usr/share/snowlinux-installer/timezone/bg.png")
+        dot = Image.open("/usr/share/snowlinux-installer/timezone/dot.png")
         overlay = Image.open(overlay_path)
         background = background.convert("RGBA")
         overlay = overlay.convert("RGBA")
         dot = dot.convert("RGBA")
         background.paste(overlay, (0,0), overlay)
         background.paste(dot, (timezone.x-3, timezone.y-3), dot)
-        background.save("/tmp/live-installer-map.png","PNG")
-        self.timezone_map.set_from_file("/tmp/live-installer-map.png")
+        background.save("/tmp/snowlinux-installer-map.png","PNG")
+        self.timezone_map.set_from_file("/tmp/snowlinux-installer-map.png")
         
         # Save the selection
         self.setup.timezone = timezone.name
@@ -1023,7 +1023,7 @@ class InstallerWindow:
         cursor = gtk.gdk.Cursor(gtk.gdk.WATCH)
         self.window.window.set_cursor(cursor)        
         
-        os.popen('mkdir -p /tmp/live-installer/tmpmount')
+        os.popen('mkdir -p /tmp/snowlinux-installer/tmpmount')
         
         try:                                                                                            
             #grub_model = gtk.ListStore(str)
@@ -1102,12 +1102,12 @@ class InstallerWindow:
                             #grub_model.append([partition.path])
 
                             #Umount temp folder
-                            if ('/tmp/live-installer/tmpmount' in commands.getoutput('mount')):
-                                os.popen('umount /tmp/live-installer/tmpmount')
+                            if ('/tmp/snowlinux-installer/tmpmount' in commands.getoutput('mount')):
+                                os.popen('umount /tmp/snowlinux-installer/tmpmount')
 
                             #Mount partition if not mounted
                             if (partition.path not in commands.getoutput('mount')):                                
-                                os.system("mount %s /tmp/live-installer/tmpmount" % partition.path)
+                                os.system("mount %s /tmp/snowlinux-installer/tmpmount" % partition.path)
 
                             #Identify partition's description and used space
                             if (partition.path in commands.getoutput('mount')):
@@ -1162,8 +1162,8 @@ class InstallerWindow:
 
                             
                             #Umount temp folder
-                            if ('/tmp/live-installer/tmpmount' in commands.getoutput('mount')):
-                                os.popen('umount /tmp/live-installer/tmpmount')
+                            if ('/tmp/snowlinux-installer/tmpmount' in commands.getoutput('mount')):
+                                os.popen('umount /tmp/snowlinux-installer/tmpmount')
                                 
                     if last_added_partition.size > 1.0:
                         if last_added_partition.partition.type == parted.PARTITION_LOGICAL:
@@ -1395,11 +1395,11 @@ class InstallerWindow:
         self.setup.language = row[1]
         self.setup.print_setup()
         try:            
-            self.translation = gettext.translation('live-installer', "/usr/share/linuxmint/locale", languages=[self.setup.language])
+            self.translation = gettext.translation('snowlinux-installer', "/usr/share/linuxmint/locale", languages=[self.setup.language])
             self.translation.install()
         except Exception, detail:
             print "No translation found, switching back to English"
-            self.translation = gettext.translation('live-installer', "/usr/share/linuxmint/locale", languages=['en'])
+            self.translation = gettext.translation('snowlinux-installer', "/usr/share/linuxmint/locale", languages=['en'])
             self.translation.install()        
         try:
             self.i18n()
@@ -1491,7 +1491,7 @@ class InstallerWindow:
         self.setup.print_setup()
         
         filename = "/tmp/live-install-keyboard-layout.png"
-        os.system("python /usr/lib/live-installer/frontend/generate_keyboard_layout.py %s %s %s" % (self.setup.keyboard_layout, self.setup.keyboard_variant, filename))
+        os.system("python /usr/lib/snowlinux-installer/frontend/generate_keyboard_layout.py %s %s %s" % (self.setup.keyboard_layout, self.setup.keyboard_variant, filename))
         self.wTree.get_widget("image_keyboard").set_from_file(filename)        
 
     def assign_password(self, widget):
@@ -1515,7 +1515,7 @@ class InstallerWindow:
     def activate_page(self, index):
         help_text = _(self.wizard_pages[index].help_text)        
         self.wTree.get_widget("help_label").set_markup("<big><b>%s</b></big>" % help_text)
-        self.wTree.get_widget("help_icon").set_from_file("/usr/share/live-installer/icons/%s" % self.wizard_pages[index].icon)
+        self.wTree.get_widget("help_icon").set_from_file("/usr/share/snowlinux-installer/icons/%s" % self.wizard_pages[index].icon)
         self.wTree.get_widget("notebook1").set_current_page(index)
 
     def wizard_cb(self, widget, goback, data=None):
@@ -1863,7 +1863,7 @@ class InstallerWindow:
 class PartitionDialog:
 
     def __init__(self, path, mount_as, format_as, type):
-        self.resource_dir = '/usr/share/live-installer/'
+        self.resource_dir = '/usr/share/snowlinux-installer/'
         self.glade = os.path.join(self.resource_dir, 'interface.glade')
         self.dTree = gtk.glade.XML(self.glade, 'dialog')
         self.window = self.dTree.get_widget("dialog")

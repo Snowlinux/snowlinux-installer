@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import sys
 import commands
-sys.path.append('/usr/lib/live-installer')
+sys.path.append('/usr/lib/snowlinux-installer')
 from frontend.gtk_interface import InstallerWindow
 
 try:

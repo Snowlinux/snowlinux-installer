@@ -1,8 +1,8 @@
-etc/live-installer
+etc/snowlinux-installer
 usr/bin
-usr/lib/live-installer/frontend
-usr/lib/live-installer
-usr/share/live-installer
+usr/lib/snowlinux-installer/frontend
+usr/lib/snowlinux-installer
+usr/share/snowlinux-installer
 usr/share/menu
 usr/share/icons
 usr/share/applications

@@ -46,14 +46,14 @@ install: build
 	dh_clean -k 
 	dh_installdirs
 
-	# Add here commands to install the package into debian/live-installer.
-	#$(MAKE) install DESTDIR=$(CURDIR)/debian/live-installer
-	mkdir -p $(CURDIR)/debian/live-installer
-	cp -r $(CURDIR)/usr $(CURDIR)/debian/live-installer/
-	cp -r $(CURDIR)/etc $(CURDIR)/debian/live-installer/
+	# Add here commands to install the package into debian/snowlinux-installer.
+	#$(MAKE) install DESTDIR=$(CURDIR)/debian/snowlinux-installer
+	mkdir -p $(CURDIR)/debian/snowlinux-installer
+	cp -r $(CURDIR)/usr $(CURDIR)/debian/snowlinux-installer/
+	cp -r $(CURDIR)/etc $(CURDIR)/debian/snowlinux-installer/
 
-	mkdir -p -p $(CURDIR)/debian/live-installer-slideshow
-	cp -r $(CURDIR)/slideshow/usr $(CURDIR)/debian/live-installer-slideshow/
+	mkdir -p -p $(CURDIR)/debian/snowlinux-installer-slideshow
+	cp -r $(CURDIR)/slideshow/usr $(CURDIR)/debian/snowlinux-installer-slideshow/
 
 # Build architecture-independent files here.
 binary-indep: build install

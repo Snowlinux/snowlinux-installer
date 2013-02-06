@@ -1,17 +1,17 @@
-Source: live-installer
+Source: snowlinux-installer
 Section: admin
 Priority: optional
-Maintainer: Clement Lefebvre <root@linuxmint.com>
+Maintainer: Lars Torben Kremer <lars@snowlinux.de>
 Build-Depends: debhelper (>= 5)
 Standards-Version: 3.7.2
 
-Package: live-installer
+Package: snowlinux-installer
 Architecture: all
 Depends: python (>= 2.4), python (<< 3), python-gtk2, python-glade2, python-parted, gparted, inxi, python-geoip, python-qt4, python-opencv, python-numpy, imagemagick
 Description: Live Installer
  A live installer
 
-Package: live-installer-slideshow
+Package: snowlinux-installer-slideshow
 Architecture: all
 Description: Live Installer Slideshow
  A Linux Mint slideshow for the live installer

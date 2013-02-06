@@ -7,11 +7,11 @@ Standards-Version: 3.7.2
 
 Package: snowlinux-installer
 Architecture: all
-Depends: python (>= 2.4), python (<< 3), python-gtk2, python-glade2, python-parted, gparted, inxi, python-geoip, python-imaging, python-qt4, python-opencv, python-numpy, imagemagick
-Description: Live Installer
- A live installer
+Depends: gparted, imagemagick, inxi, libparted0debian1, python (>= 2.4), python (<< 3), python-geoip, python-glade2, python-gtk2, python-imaging, python-numpy, python-opencv, python-parted, python-qt4
+Description: Snowlinux installer
+ The Snowlinux installer
 
 Package: snowlinux-installer-slideshow
 Architecture: all
-Description: Live Installer Slideshow
- A Linux Mint slideshow for the live installer
+Description: Snowlinux installer slideshow
+ A Snowlinux slideshow for the Snowlinux installer

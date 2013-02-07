@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Install Snowlinux
-GenericName=Live Installer
+GenericName=Snowlinux Installer
 Comment=Install the operating system to disk
 Exec=gksudo /usr/bin/snowlinux-installer
 Icon=snowlinux-installer

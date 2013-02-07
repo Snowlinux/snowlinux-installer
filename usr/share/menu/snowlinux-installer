@@ -1,5 +1,4 @@
 ?package(snowlinux-installer):needs="X11"\
    section="Applications/System/Administration"\
    title="Install Snowlinux"\
-   icon="/usr/share/icons/snowlinux-installer.xpm"\
    command="/usr/bin/gksudo /usr/bin/snowlinux-installer"

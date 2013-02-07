@@ -2,8 +2,8 @@
 Name=Install Snowlinux
 GenericName=Live Installer
 Comment=Install the operating system to disk
-Exec=gksudo /usr/bin/live-installer
-Icon=live-installer
+Exec=gksudo /usr/bin/snowlinux-installer
+Icon=snowlinux-installer
 Terminal=False
 Type=Application
 Categories=System;

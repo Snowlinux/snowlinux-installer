@@ -229,7 +229,7 @@ class InstallerWindow:
         self.wizard_pages[self.PAGE_CUSTOMWARNING] = WizardPage(_("Please make sure you wish to manually manage partitions"), "hdd.svg")
         self.wizard_pages[self.PAGE_ADVANCED] = WizardPage(_("Advanced options"), "advanced.png")
         self.wizard_pages[self.PAGE_OVERVIEW] = WizardPage(_("Summary"), "summary.png")
-        self.wizard_pages[self.PAGE_INSTALL] = WizardPage(_("Installing Linux Mint..."), "install.png")
+        self.wizard_pages[self.PAGE_INSTALL] = WizardPage(_("Installing Snowlinux..."), "install.png")
         self.wizard_pages[self.PAGE_CUSTOMPAUSED] = WizardPage(_("Installation is Paused: Please finish the custom installation"), "install.png")
         
         # set the button events (wizard_cb)
@@ -481,7 +481,7 @@ class InstallerWindow:
         self.wTree.get_widget("label_custom_install_paused_5").set_label(_("Double-check that your /target/etc/fstab is correct, matches what your new system will have at first boot, and matches what is currently mounted at /target."))
 
         # hdd page
-        self.wTree.get_widget("label_radio_hdd").set_label(_("Install Linux Mint on the selected drive:"))
+        self.wTree.get_widget("label_radio_hdd").set_label(_("Install Snowlinux on the selected drive:"))
         self.wTree.get_widget("label_radio_custom").set_label(_("Manually mount partitions (ADVANCED USERS ONLY)."))
         
         #Columns

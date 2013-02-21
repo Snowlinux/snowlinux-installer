@@ -7,7 +7,7 @@ Standards-Version: 3.7.2
 
 Package: snowlinux-installer
 Architecture: all
-Depends: gksu, gparted, imagemagick, inxi, parted, python (>= 2.4), python (<< 3), python-geoip, python-glade2, python-gtk2, python-imaging, python-numpy, python-opencv, python-parted, python-qt4, python-webkit
+Depends: gparted, imagemagick, inxi, parted, python (>= 2.4), python (<< 3), python-geoip, python-glade2, python-gtk2, python-imaging, python-numpy, python-opencv, python-parted, python-qt4, python-webkit
 Description: Snowlinux installer
  The Snowlinux installer
 

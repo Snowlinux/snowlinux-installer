@@ -1,305 +1,47 @@
-snowlinux-installer (2013.01.15) glacier; urgency=low
+snowlinux-installer (2.0.0) flurry; urgency=low
 
-  * UI improvements
+  * Improved snowlinux-installer
 
- -- Lars Torben Kremer <lars@snowlinux.de>  Tue, 15 Jan 2013 14:17:51 +0100
+ -- Lars Torben Kremer <lars@snowlinux.de>  Mon, 11 Mar 2013 23:15:08 +0100
 
-snowlinux-installer (2013.01.08) glacier; urgency=low
+snowlinux-installer (1.0.7) flurry; urgency=low
 
-  * Timezone map
-  * Keyboard picture
-  * Updates in slideshow
-  * User picture selection and webcam photo
+  * Removed /home/user/Desktop/live-installer.desktop
 
- -- Lars Torben Kremer <lars@snowlinux.de>  Tue, 08 Jan 2013 16:48:47 +0100
+ -- Lars Torben Kremer <lars@snowlinux.de>  Sat, 02 Feb 2013 01:18:01 +0100
 
-snowlinux-installer (2012.12.29) glacier; urgency=low
+snowlinux-installer (1.0.6) glacier; urgency=low
 
-  * Added, GDM/KDM support
-  * Slideshow
-  * UI improvements
-  * Localize LibreOffice, KDE
-  * Support for manual targets
+  * Glacier
 
- -- Lars Torben Kremer <lars@snowlinux.de>  Sat, 29 Dec 2012 15:50:51 +0100
+ -- Lars Torben Kremer <lars@snowlinux.de>  Fri,  21 Dec 2012 19:10:23 +0100
 
-snowlinux-installer (2012.04.20.1) glacier; urgency=low
+snowlinux-installer (1.0.5) crystal; urgency=low
 
-  * Replaced GDM config with MDM config
-  * Fixed formatting issues for JFS, XFS, BTRFS and a couple of other filesystems
+  * Improved live-installer
 
- -- Clement Lefebvre <clem@mint>  Fri, 20 Apr 2012 10:20:38 +0100
+ -- Lars Torben Kremer <lars@snowlinux.de>  Fri,  24 Aug 2012 12:05:00 +0000
 
-snowlinux-installer (2011.09.07) glacier; urgency=medium
+snowlinux-installer (1.0.4) crystal; urgency=low
 
-  * Fix installer failing to localize firefox/thunderbird for locales which define country variants (pt_BR for instance)
+  * Fixed wrong name
 
- -- Lars Torben Kremer <lars@snowlinux.de>  Wed,  7 Sep 2011 11:12:00 +0100
+ -- Lars Torben Kremer <lars@snowlinux.de>  Mon,  16 Jul 2012 18:14:00 +0000
 
-snowlinux-installer (2011.09.05) glacier; urgency=medium
+snowlinux-installer (1.0.3) ice; urgency=low
 
-  * Generate grub partitions in combo before showing the advanced page
+  * Improved live-installer
 
- -- Lars Torben Kremer <lars@snowlinux.de>  Thu,  1 Sep 2011 18:18:00 +0100
+ -- Lars Torben Kremer <lars@snowlinux.de>  Mon,  30 Jan 2012 20:02:00 +0000
 
-snowlinux-installer (2011.09.04) glacier; urgency=medium
+snowlinux-installer (1.0.2) cold; urgency=low
 
-  * Create a 1MiB post-MBR gap in the partition table to accomodate Grub2
-  * Align the end of the swap partition on the nearest cylinder
+  * Fixed wrong name
 
- -- Lars Torben Kremer <lars@snowlinux.de>  Thu,  1 Sep 2011 17:18:00 +0100
+ -- Lars Torben Kremer <lars@snowlinux.de>  Wed,  11 Jan 2011 13:50:00 +0000
 
-snowlinux-installer (2011.09.03) glacier; urgency=medium
-
-  * Fixed, refresh partition table after creating it.
-
- -- Lars Torben Kremer <lars@snowlinux.de>  Thu,  1 Sep 2011 14:55:00 +0100
-
-snowlinux-installer (2011.09.02) glacier; urgency=medium
-
-  * Fixed self.column1 warning and activation of language by default
-  * Fixed partition table question dialog not working
-  * Fixed default partition setup - partition names
-
- -- Lars Torben Kremer <lars@snowlinux.de>  Thu,  1 Sep 2011 13:18:00 +0100
-
-snowlinux-installer (2011.09.01) glacier; urgency=medium
-
-  * Indentation bug fix in GTK frontend
-  * Fixed warning message about missing column called by i18n()
-
- -- Lars Torben Kremer <lars@snowlinux.de>  Thu,  1 Sep 2011 12:24:00 +0100
-
-snowlinux-installer (2011.08.31) glacier; urgency=medium
-
-  * If the HDD has no partition table, create a default set of partitions
-  * In /etc/fstab: Do not add partitions when their mount point is None
-  * In /etc/fstab: Non-ext filesystems now use default mount options instead of ext specific ones
-  * In /etc/fstab: Activate fsck flag for the root partition
-
- -- Lars Torben Kremer <lars@snowlinux.de>  Wed,  31 Aug 2011 17:11:00 +0100
-
-snowlinux-installer (2011.08.07) glacier; urgency=medium
-
-  * Allow all HDDs to be used by grub
-  * Icons added to the top label
-  * Selecting a language uses that language in the installer
-
- -- Lars Torben Kremer <lars@snowlinux.de>  Sun,  07 Aug 2011 11:41:00 +0100
-
-snowlinux-installer (2011.07.30) glacier; urgency=medium
-
-  * Don't fail when a partition cannot be unmounted
-  * Don't try to unmount partitions which aren't mounted.. :)
-
- -- Lars Torben Kremer <lars@snowlinux.de>  Sat,  30 Jul 2011 15:00:00 +0100
-
-snowlinux-installer (2011.07.29.1) glacier; urgency=medium
-
-  * Single threaded partition builder
-  * No more slideshow
-
- -- Lars Torben Kremer <lars@snowlinux.de>  Fri,  29 Jul 2011 15:09:00 +0100
-
-snowlinux-installer (2011.07.29) glacier; urgency=medium
-
-  * Renamed launcher file
-
- -- Lars Torben Kremer <lars@snowlinux.de>  Fri,  29 Jul 2011 10:05:00 +0100
-
-snowlinux-installer (2011.07.25) glacier; urgency=medium
-
-  * Remove live-boot and live-boot-initramfs-tools
-
- -- Lars Torben Kremer <lars@snowlinux.de>  Mon,  25 Jul 2011 10:37:00 +0100
-
-snowlinux-installer (2011.07.15.2) glacier; urgency=medium
-
-  * Latest version
-
- -- Lars Torben Kremer <lars@snowlinux.de>  Fri,  15 Jul 2011 14:42:00 +0100
-
-snowlinux-installer (2010.12.16.1) glacier; urgency=medium
-
-  * Better validation process for username, passwords and hostname
-
- -- Lars Torben Kremer <lars@snowlinux.de>  Thu,  16 Dec 2010 12:16:00 +0100
-
-snowlinux-installer (2010.12.16) glacier; urgency=medium
-
-  * No default value for hostname
-
- -- Lars Torben Kremer <lars@snowlinux.de>  Thu,  16 Dec 2010 11:03:00 +0100
-
-snowlinux-installer (2010.12.07) glacier; urgency=medium
-
-  * Make use of swap partitions
-  * Grub can now be installed on partitions
-  * System can now be installed on multiple devices
-
- -- Lars Torben Kremer <lars@snowlinux.de>  Tue,  07 Dec 2010 10:58:00 +0100
-
-snowlinux-installer (2010.09.05.4) glacier; urgency=medium
-
-  * Fixed use-case with /boot partition (grub check failing)
-
- -- Lars Torben Kremer <lars@snowlinux.de>  Sun,  05 Sep 2010 17:03:00 +0100
-
-snowlinux-installer (2010.09.05.3) glacier; urgency=medium
-
-  * Fixed mount problems when using multiple partitions
-
- -- Lars Torben Kremer <lars@snowlinux.de>  Sun,  05 Sep 2010 13:29:00 +0100
-
-snowlinux-installer (2010.09.05.1) glacier; urgency=medium
-
-  * Fixed exception when HDD is blank without a partition table
-
- -- Lars Torben Kremer <lars@snowlinux.de>  Sun,  05 Sep 2010 11:51:00 +0100
-
-snowlinux-installer (2010.09.05) glacier; urgency=medium
-
-  * Replaced commands call with os.system in APT cleaning step
-
- -- Lars Torben Kremer <lars@snowlinux.de>  Sun,  05 Sep 2010 10:24:00 +0100
-
-snowlinux-installer (2010.09.02.10) glacier; urgency=medium
-
-  * Filename error fixed
-
- -- Lars Torben Kremer <lars@snowlinux.de>  Thu,  02 Sep 2010 18:18:00 +0100
-
-snowlinux-installer (2010.09.02.3) glacier; urgency=medium
-
-  * Fixed code error
-
- -- Lars Torben Kremer <lars@snowlinux.de>  Thu,  02 Sep 2010 17:59:00 +0100
-
-snowlinux-installer (2010.09.02.2) glacier; urgency=medium
-
-  * Added 2 sec sleep before grub checks
-
- -- Lars Torben Kremer <lars@snowlinux.de>  Thu,  02 Sep 2010 17:14:00 +0100
- 
- snowlinux-installer (2010.09.02.1) glacier; urgency=medium
-
-  * Retry mechanism for grub-mkconfig
-
- -- Lars Torben Kremer <lars@snowlinux.de>  Thu,  02 Sep 2010 17:14:00 +0100
-
-snowlinux-installer (2010.09.02) glacier; urgency=medium
-
-  * Fixed redraw problem in installer's partition screen
-  * Improved usability with format/assign_partition dialog
-  * Shade added to scroll area for timezones
-  * Added Edit menu item in context menu in partitions table
-
- -- Lars Torben Kremer <lars@snowlinux.de>  Thu,  02 Sep 2010 15:30:00 +0100
-
-snowlinux-installer (2010.08.31) glacier; urgency=medium
-
-  * Fixed useradd with space chars in name 
-
- -- Lars Torben Kremer <lars@snowlinux.de>  Tue,  31 Aug 2010 16:24:00 +0100
-
-snowlinux-installer (2010.08.29.1) glacier; urgency=medium
-
-  * Better tracing  
-
- -- Lars Torben Kremer <lars@snowlinux.de>  Sun,  28 Aug 2010 12:31:00 +0100
-
-snowlinux-installer (2010.08.29) glacier; urgency=medium
-
-  * Better tracing  
-
- -- Lars Torben Kremer <lars@snowlinux.de>  Sun,  28 Aug 2010 10:54:00 +0100
- 
- snowlinux-installer (2010.08.21) glacier; urgency=medium
-
-  * slideshow improvements
-  * detects keyboard layout based on selected locale
-
- -- Lars Torben Kremer <lars@snowlinux.de>  Sun,  21 Aug 2010 12:12:00 +0100
-
-snowlinux-installer (2010.08.20.2) glacier; urgency=medium
-
-  * Generic detection for l10n (FF and thunderbird)
-
- -- Lars Torben Kremer <lars@snowlinux.de>  Sat,  20 Aug 2010 18:04:00 +0100
- 
-snowlinux-installer (2010.08.20.1) glacier; urgency=medium
-
-  * locale and keyboard layout fixes
-
- -- Lars Torben Kremer <lars@snowlinux.de>  Sat,  20 Aug 2010 16:41:00 +0100
-
-snowlinux-installer (2010.08.20) glacier; urgency=medium
-
-  * Slideshow moved
-  * No more forks
-  * /etc/resolv.conf in chroot
-
- -- Lars Torben Kremer <lars@snowlinux.de>  Sat,  20 Aug 2010 11:18:00 +0100
-
-snowlinux-installer (2010.08.19) glacier; urgency=medium
-
-  * Slideshow
-  * UI improvements
-  * Localize Thunderbird and Firefox
-
- -- Lars Torben Kremer <lars@snowlinux.de>  Fri,  19 Aug 2010 15:15:00 +0100
-
-snowlinux-installer (2010.07.30.1) glacier; urgency=medium
-
-  * Timezone fix
-
- -- Lars Torben Kremer <lars@snowlinux.de>  Fri,  30 Jul 2010 18:23:00 +0100
-
-snowlinux-installer (2010.07.30) glacier; urgency=medium
-
-  * New version
-
- -- Lars Torben Kremer <lars@snowlinux.de>  Fri,  30 Jul 2010 17:02:00 +0100
-
-snowlinux-installer (1.0.5) glacier; urgency=medium
-
-  * Bug fix in update-locale
-
- -- Lars Torben Kremer <lars@snowlinux.de>  Thu,  30 Jun 2010 21:23:00 +0100
-
-snowlinux-installer (1.0.4) glacier; urgency=medium
-
-  * Apply locale in chroot
-
- -- Lars Torben Kremer <lars@snowlinux.de>  Thu,  30 Jun 2010 21:23:00 +0100
-
-snowlinux-installer (1.0.3) glacier; urgency=medium
-
-  * Use country for flags
-
- -- Lars Torben Kremer <lars@snowlinux.de>  Wed,  30 Jun 2010 20:34:00 +0100
-
-snowlinux-installer (1.0.2) glacier; urgency=medium
-
-  * Bug fixes
-
- -- Lars Torben Kremer <lars@snowlinux.de>  Wed,  30 Jun 2010 20:34:00 +0100
-
-snowlinux-installer (1.0.1) glacier; urgency=medium
-
-  * Renaming
-
- -- Lars Torben Kremer <lars@snowlinux.de>  Wed,  30 Jun 2010 14:02:00 +0100
-
-snowlinux-installer (1.0.1) glacier; urgency=medium
-
-  * Bug fix regarding grub installation
-
- -- Ikey Doherty <contactjfreak@gmail.com>  Fri,  25 Jun 2010 23:25:00 +0100
-
-snowlinux-installer (1.0.0) glacier; urgency=low
+snowlinux-installer (1.0.0) cold; urgency=low
 
   * Initial release
 
- -- Ikey Doherty <contactjfreak@gmail.com>  Wed,  16 Jun 2010 12:19:00 +0100
-
+ -- Lars Torben Kremer <lars@snowlinux.de>  Sun,  03 Jul 2011 17:06:00 +0000

@@ -1,6 +1,4 @@
 etc/snowlinux-installer
-home/snowlinux/Desktop
-home/snowlinux
 usr/bin
 usr/lib/snowlinux-installer/frontend
 usr/lib/snowlinux-installer

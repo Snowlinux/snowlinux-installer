@@ -1,3 +1,10 @@
+snowlinux-installer (2.0.0+nmu1) flurry-unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Fixed path to squashfs
+
+ -- Andy Jacobsen <atze@libra.uberspace.de>  Wed, 26 Jun 2013 22:07:04 +0200
+
 snowlinux-installer (2.0.0) flurry; urgency=low
 
   * Improved snowlinux-installer

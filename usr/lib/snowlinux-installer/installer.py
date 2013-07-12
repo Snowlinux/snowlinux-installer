@@ -222,12 +222,25 @@ class InstallerEngine:
             print " --> Removing live packages"
             our_current += 1
             self.update_progress(total=our_total, current=our_current, message=_("Removing live configuration (packages)"))
-            self.do_run_in_chroot("apt-get remove --purge --yes --force-yes live-boot live-boot-initramfs-tools live-initramfs snowlinux-installer live-config live-config-sysvinit gparted")
-            
+            self.do_run_in_chroot("apt-get remove --purge --yes --force-yes live-boot live-boot-doc live-boot-initramfs-tools live-initramfs live-config live-config-doc live-config-sysvinit live-tools snowlinux-installer")
+            self.update_progress(total=our_total, current=our_current, message=_("Removing snowlinux installer (packages)"))
+            self.do_run_in_chroot("apt-get remove --purge --yes --force-yes snowlinux-installer snowlinux-installer-slideshow")
             # When the purge is incomplete and leaves redundant symbolic links in the rc*.d directories.
             # The resulting startpar error prevents gsfxi to successfully install the Nvidia drivers.
-            self.do_run_in_chroot("update-rc.d -f snowlinux-installer remove")                    
-                        
+            self.do_run_in_chroot("update-rc.d -f snowlinux-installer remove")                   
+
+            arch = subprocess.check_output(['uname', '-r']).split('-')[-1].strip()
+            # check if we are on x86
+            if arch in ['pae', '486']:
+                self.update_progress(total=our_total, current=our_current, message=("Removing unused kernel (packages)"))
+                if arch == 'pae':
+                    self.do_run_in_chroot("apt-get remove --purge --yes --force-yes linux-image-486 linux-image-3.9-1-486")
+                if arch == '486':
+                    self.do_run_in_chroot("apt-get remove --purge --yes --force-yes linux-image-686-pae linux-image-3.9-1-686-pae")
+
+            self.do_run_in_chroot("apt-get --purge --yes --force-yes autoremove")
+            self.do_run_in_chroot("apt-get clean")
+
             # add new user
             print " --> Adding new user"
             our_current += 1
@@ -235,14 +248,14 @@ class InstallerEngine:
             self.do_run_in_chroot("useradd -s %s -c \'%s\' -G sudo,adm,dialout,audio,video,cdrom,floppy,dip,plugdev,lpadmin -m %s" % ("/bin/bash", setup.real_name, setup.username))
             os.system("chroot /target/ /bin/bash -c \"shopt -s dotglob && cp -R /etc/skel/* /home/%s/\"" % setup.username)
             self.do_run_in_chroot("chown -R %s:%s /home/%s" % (setup.username, setup.username, setup.username))
-            
+
             fp = open("/target/tmp/.passwd", "w")
             fp.write(setup.username + ":" + setup.password1 + "\n")
             fp.write("root:" + setup.password1 + "\n")
             fp.close()
             self.do_run_in_chroot("cat /tmp/.passwd | chpasswd")
             os.system("rm -f /target/tmp/.passwd")
-          
+
             # Make the new user the default user in KDM            
             if os.path.exists('/target/etc/kde4/kdm/kdmrc'):
                 defUsrCmd = "sed -i 's/^#DefaultUser=.*/DefaultUser=" + setup.username + "/g' " + kdmrcPath

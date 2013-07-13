@@ -222,7 +222,7 @@ class InstallerEngine:
             print " --> Removing live packages"
             our_current += 1
             self.update_progress(total=our_total, current=our_current, message=_("Removing live configuration (packages)"))
-            self.do_run_in_chroot("apt-get remove --purge --yes --force-yes live-boot live-boot-doc live-boot-initramfs-tools live-initramfs live-config live-config-doc live-config-sysvinit live-tools snowlinux-installer")
+            self.do_run_in_chroot("apt-get remove --purge --yes --force-yes live-boot live-boot-doc live-boot-initramfs-tools live-config live-config-doc live-config-sysvinit live-tools")
             self.update_progress(total=our_total, current=our_current, message=_("Removing snowlinux installer (packages)"))
             self.do_run_in_chroot("apt-get remove --purge --yes --force-yes snowlinux-installer snowlinux-installer-slideshow")
             # When the purge is incomplete and leaves redundant symbolic links in the rc*.d directories.

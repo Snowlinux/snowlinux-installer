@@ -1,3 +1,9 @@
+snowlinux-installer (2.0.1) flurry-unstable; urgency=low
+
+  * remove unused kernel packages, run apt-get autoremove and clean after install finished
+
+ -- Andy Jacobsen <atze@libra.uberspace.de>  Sat, 13 Jul 2013 22:55:22 +0200
+
 snowlinux-installer (2.0.0+nmu1) flurry-unstable; urgency=low
 
   * Non-maintainer upload.

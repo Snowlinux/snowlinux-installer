@@ -234,9 +234,13 @@ class InstallerEngine:
             if arch in ['pae', '486']:
                 self.update_progress(total=our_total, current=our_current, message=("Removing unused kernel (packages)"))
                 if arch == 'pae':
-                    self.do_run_in_chroot("apt-get remove --purge --yes --force-yes linux-image-486 linux-image-3.9-1-486")
+                    linux_image = subprocess.check_output("dpkg -l linux-image-*-486 |grep ^ii|awk '{ print $2 }'", shell=True)
+                    cmd = "apt-get remove --purge --yes --force-yes linux-image-486 %s" % linux_image
+                    self.do_run_in_chroot(cmd)
                 if arch == '486':
-                    self.do_run_in_chroot("apt-get remove --purge --yes --force-yes linux-image-686-pae linux-image-3.9-1-686-pae")
+                    linux_image = subprocess.check_output("dpkg -l linux-image-*-686-pae |grep ^ii|awk '{ print $2 }'", shell=True)
+                    cmd = "apt-get remove --purge --yes --force-yes linux-image-686 %s" % linux_image
+                    self.do_run_in_chroot(cmd)
 
             self.do_run_in_chroot("apt-get --purge --yes --force-yes autoremove")
             self.do_run_in_chroot("apt-get clean")

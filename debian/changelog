@@ -1,3 +1,9 @@
+snowlinux-installer (2.0.2) flurry-unstable; urgency=low
+
+  * Remove hard coded kernel version
+
+ -- Andy Jacobsen <atze@libra.uberspace.de>  Wed, 28 Aug 2013 20:29:11 +0200
+
 snowlinux-installer (2.0.1) flurry-unstable; urgency=low
 
   * remove unused kernel packages, run apt-get autoremove and clean after install finished
